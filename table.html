@@ -38,7 +38,7 @@ th {
 </table>
 
 <script>
-fetch('https://github.com/FredyKurniadi/scrapping/blob/main/data.json')
+fetch('data.json')
   .then(response => response.json())
   .then(data => {
     const tableBody = document.querySelector('#jsonTable tbody');
