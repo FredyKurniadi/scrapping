@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery DataTables Example</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <title>jQuery DataTable</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 </head>
 <body>
     <table id="example" class="display">
@@ -21,19 +19,27 @@
         <tbody>
         </tbody>
     </table>
-    <script src="script.js"></script>
-</body>
-</html>
+<script>
 $(document).ready(function() {
-    $.getJSON('data.json', function(data) {
-        $('#example').DataTable({
-            data: data,
-            columns: [
-                { data: 'kategori' },
-                { data: 'waktu' },
-                { data: 'judul' },
-                { data: 'waktu scrapping' }
-            ]
-        });
+    $.ajax({
+        url: 'path/to/your/data.json', // Update the path to your actual JSON file location
+        dataType: 'json',
+        success: function(data) {
+            $('#example').DataTable({
+                data: data,
+                columns: [
+                    { data: 'kategori' },
+                    { data: 'waktu' },
+                    { data: 'judul' },
+                    { data: 'waktu scrapping' }
+                ]
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Failed to load data: " + textStatus);
+        }
     });
 });
+</script>
+</body>
+</html>
